@@ -1,0 +1,20 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: deployment-nodejs-helloworld
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: nodejs-helloworld
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: nodejs-helloworld
+    spec:
+      containers:
+      - name: nodejs-helloworld
+        image: dushyant8858/nodejs-hello-world:4
+        ports:
+        - containerPort: 8080
